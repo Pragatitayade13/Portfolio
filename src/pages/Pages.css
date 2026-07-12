@@ -1,0 +1,97 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: var(--spacing-xxl) var(--spacing-lg);
+  text-align: center;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: var(--spacing-sm);
+  display: inline-block;
+}
+
+.page-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -1px;
+}
+
+.page-description {
+  color: var(--text-muted);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-lg);
+  line-height: 1.6;
+}
+
+.badge-available {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background-color: var(--accent-muted);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: 100px;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--success);
+}
+
+/* 404 styling */
+.not-found-container {
+  min-height: calc(100vh - 145px);
+}
+
+.error-code {
+  font-size: clamp(5rem, 15vw, 8rem);
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: -2px;
+}
+
+.error-title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  margin-bottom: var(--spacing-md);
+}
+
+.btn-back-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  margin-top: var(--spacing-md);
+}
+
+.btn-back-home:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.25);
+}

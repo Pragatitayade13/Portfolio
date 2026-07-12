@@ -29,22 +29,24 @@
 
 ---
 
-## WAVE 1: React Project Initialization
+## WAVE 1: React Project Initialization ✅
 
-- [ ] Choose hosting target: **GitHub Pages** OR **Firebase Hosting**
-- [ ] Choose routing strategy: `HashRouter` (GitHub Pages) OR `BrowserRouter` (Firebase)
-- [ ] Initialize Vite + React project in workspace root
-- [ ] Configure `vite.config.js` with correct `base` path
-- [ ] Install all required packages:
-  - [ ] `react-router-dom`
-  - [ ] `react-intersection-observer`
-  - [ ] `react-scroll`
-  - [ ] `react-hook-form`
-  - [ ] `react-helmet-async`
-  - [ ] `react-icons` (optional — replace inline SVGs)
-- [ ] Set up project folder structure (`components/`, `data/`, `assets/`, `hooks/`, `contexts/`)
-- [ ] Configure path aliases in `vite.config.js`
-- [ ] Verify development server runs without errors
+- [x] Choose hosting target: **GitHub Pages** (Vite config base set to `/Pragati_portfolio/`)
+- [x] Choose routing strategy: `HashRouter` to prevent GitHub Pages refresh 404s
+- [x] Initialize Vite + React project in workspace root
+- [x] Configure `vite.config.js` with correct `base` path `/Pragati_portfolio/`
+- [x] Install all required packages:
+  - [x] `react` (v19)
+  - [x] `react-dom` (v19)
+  - [x] `react-router-dom` (v7)
+  - [x] `lucide-react`
+- [x] Set up project folder structure (scaffolded directories under `src/` with `.gitkeep` placekeepers)
+- [ ] Configure path aliases in `vite.config.js` (left for future config when absolute paths are needed)
+- [x] Verify development server runs without errors (`npm run dev` starts successfully)
+- [x] Create initial layout components and routing structure
+- [x] Create system-aware context for theme toggler
+- [x] Create project guide `docs/REACT_FOUNDATION.md`
+
 
 ---
 
