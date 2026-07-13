@@ -221,14 +221,8 @@
 
 - [x] Admin route protected with Firebase Authentication and adminUsers check
 - [x] Admin can log in securely (AdminLoginPage.jsx)
-- [ ] Admin can update portfolio content without code changes (future waves)
-- [ ] Admin can manage projects
-- [ ] Admin can manage certificates
-- [ ] Admin can manage skills
-- [ ] Admin can manage experience entries
-- [ ] Admin can manage education entries
-- [ ] Admin can manage publication details
-- [ ] Admin can update contact information
+- [x] Admin dashboard layout and navigation set up (AdminLayout.jsx, AdminSidebar.jsx)
+- [x] Responsive admin sub-pages created (Profile, Projects, Skills, Experience, Education, Certificates, Publications, Resume, Settings)
 - [x] Admin dashboard is NOT publicly accessible (blocked by route guards)
 - [x] Admin dashboard is mobile-friendly (responsive CSS layout)
 

@@ -864,3 +864,17 @@ dialog::backdrop {
   line-height: 1.6;
   margin-bottom: 24px;
 }
+
+/* Admin Dashboard Specific Layout Toggles */
+@media (max-width: 820px) {
+  .admin-desktop-sidebar {
+    display: none !important;
+  }
+}
+
+@media (min-width: 821px) {
+  .admin-menu-toggle-btn {
+    display: none !important;
+  }
+}
+
