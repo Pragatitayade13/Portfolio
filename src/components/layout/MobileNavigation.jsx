@@ -2,12 +2,12 @@ import React from 'react';
 
 const MobileNavigation = ({ isOpen, onClose }) => {
   const navLinks = [
-    { label: 'Projects', href: '#projects' },
-    { label: 'About', href: '#about' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Education', href: '#education' },
-    { label: 'Certifications', href: '#certifications' },
-    { label: 'Contact', href: '#contact' }
+    { label: 'Projects', href: '#/#projects' },
+    { label: 'About', href: '#/#about' },
+    { label: 'Experience', href: '#/#experience' },
+    { label: 'Education', href: '#/#education' },
+    { label: 'Certifications', href: '#/#certifications' },
+    { label: 'Contact', href: '#/#contact' }
   ];
 
   return (

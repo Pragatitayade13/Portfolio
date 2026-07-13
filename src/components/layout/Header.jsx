@@ -31,7 +31,7 @@ const Header = () => {
   return (
     <header className="site-header">
       <div className="container nav-container">
-        <a className="brand" href="#home" onClick={closeMenu}>
+        <a className="brand" href="#/#home" onClick={closeMenu}>
           <span className="brand-dot" aria-hidden="true"></span>
           Pragati
         </a>
@@ -60,7 +60,7 @@ const Header = () => {
         <nav className="nav-links desktop-only" aria-label="Main Navigation">
           {navItems.map((item) => (
             <a 
-              href={`#${item.id}`} 
+              href={`#/#${item.id}`} 
               key={item.id}
               className={activeSection === item.id ? 'active' : ''}
             >
@@ -74,7 +74,7 @@ const Header = () => {
 
         <div className="nav-actions">
           <ThemeToggle />
-          <a className="btn btn-hire" href="#contact" onClick={closeMenu}>Hire Me</a>
+          <a className="btn btn-hire" href="#/#contact" onClick={closeMenu}>Hire Me</a>
         </div>
       </div>
     </header>

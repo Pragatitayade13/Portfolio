@@ -111,8 +111,8 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="hero-ctas reveal" style={{ transitionDelay: '0.28s' }}>
-              <a className="btn btn-hire" href="#contact">Hire Me</a>
-              <a className="btn btn-secondary" href="#about">Contact Me</a>
+              <a className="btn btn-hire" href="#/#contact">Hire Me</a>
+              <a className="btn btn-secondary" href="#/#about">Contact Me</a>
               <DocumentLink 
                 className="btn btn-secondary" 
                 href={resumePdf} 
