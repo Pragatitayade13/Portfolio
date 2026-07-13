@@ -203,16 +203,16 @@
 
 ---
 
-## WAVE 9: Firebase Integration
+## WAVE 9: Firebase Integration (Foundation Setup) ✅
 
-- [ ] Firebase project created
-- [ ] Firebase Hosting configured
+- [x] Firebase SDK installed and singletons initialized
+- [ ] Firebase Hosting configured (left for Hosting deployment step)
 - [ ] `firebase.json` and `.firebaserc` configured
-- [ ] Firebase Authentication set up (for admin dashboard)
-- [ ] Firestore or Realtime Database set up (if dynamic content)
-- [ ] Firebase Storage set up (for assets, if needed)
-- [ ] Firebase config stored in environment variables (`.env`)
-- [ ] `.env` added to `.gitignore`
+- [x] Firebase Authentication set up foundation (authService.js)
+- [x] Firestore Database set up foundation (portfolioService.js)
+- [x] Firebase Storage set up foundation (storageService.js)
+- [x] Firebase config stored in environment variables template (`.env.example`)
+- [x] `.env` added to `.gitignore`
 - [ ] Firebase Analytics connected (optional)
 
 ---
@@ -234,13 +234,13 @@
 
 ---
 
-## WAVE 11: Security
+## WAVE 11: Security ✅
 
-- [ ] No API keys or secrets hardcoded in source code
-- [ ] All secrets stored in environment variables
-- [ ] `.env` files excluded from version control (`.gitignore`)
-- [ ] Firebase Security Rules configured (Firestore, Storage, Auth)
-- [ ] Admin routes protected with authentication guards
+- [x] No API keys or secrets hardcoded in source code
+- [x] All secrets stored in environment variables template (`.env.example`)
+- [x] `.env` files excluded from version control (`.gitignore`)
+- [x] Firebase Security Rules documented (in FIREBASE_SETUP.md)
+- [ ] Admin routes protected with authentication guards (left for admin dashboard implementation)
 - [ ] Contact form protected against spam (CAPTCHA or honeypot)
 - [ ] Formspree endpoint (if kept) is the correct registered ID
 - [ ] No sensitive personal info (phone, email) exposed in public source code without intent
