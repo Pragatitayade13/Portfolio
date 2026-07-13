@@ -1,4 +1,4 @@
-import { addPortfolioItem, COLLECTIONS } from './portfolioService';
+import { createRecord } from './portfolioService';
 
 export const logAdminAction = async (actionType, details, userEmail) => {
   try {
@@ -10,7 +10,7 @@ export const logAdminAction = async (actionType, details, userEmail) => {
     };
     
     // We can write to a dedicated 'audit_logs' collection in Firestore
-    await addPortfolioItem('audit_logs', logData);
+    await createRecord('auditLogs', logData);
   } catch (error) {
     // Fail silently on audit logging to avoid breaking core application workflows
     console.error('Audit logging failed:', error.message);
