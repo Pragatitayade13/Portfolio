@@ -2,12 +2,45 @@ import React from 'react';
 import './Footer.css';
 
 const Footer = () => {
+  const handleMigrate = async () => {
+    const confirm = window.confirm("Are you sure you want to run the Firestore database migration?");
+    if (!confirm) return;
+
+    try {
+      const { runMigration } = await import('../../scripts/migrateInitialData');
+      const result = await runMigration();
+      alert(result.logs.join('\n'));
+    } catch (err) {
+      alert(`Migration error: ${err.message}`);
+    }
+  };
+
   return (
     <footer>
       <div className="container footer-inner">
         <p className="footer-copyright">
           &copy; {new Date().getFullYear()} Pragati Tayade. All rights reserved.
         </p>
+
+        {import.meta.env.DEV && (
+          <button 
+            onClick={handleMigrate}
+            style={{
+              padding: '6px 12px',
+              backgroundColor: 'var(--accent)',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '0.75rem',
+              fontWeight: 'bold',
+              fontFamily: 'var(--font-heading)'
+            }}
+          >
+            ⚙️ Migrate Initial Data
+          </button>
+        )}
+
         <div className="social-group">
           <div className="social-wrapper">
             <a 
