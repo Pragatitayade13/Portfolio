@@ -234,11 +234,11 @@
 - [x] All secrets stored in environment variables template (`.env.example`)
 - [x] `.env` files excluded from version control (`.gitignore`)
 - [x] Firebase Security Rules documented (in FIREBASE_SETUP.md)
-- [ ] Admin routes protected with authentication guards (left for admin dashboard implementation)
+- [x] Admin routes protected with authentication guards (ProtectedRoute & AdminOnlyRoute)
 - [ ] Contact form protected against spam (CAPTCHA or honeypot)
 - [ ] Formspree endpoint (if kept) is the correct registered ID
 - [ ] No sensitive personal info (phone, email) exposed in public source code without intent
-- [ ] Content Security Policy (CSP) headers considered for Firebase Hosting
+- [ ] Content Content Security Policy (CSP) headers considered for Firebase Hosting
 - [ ] HTTPS enforced (Firebase Hosting provides this automatically)
 
 ---
