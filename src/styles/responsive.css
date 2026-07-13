@@ -1,0 +1,130 @@
+/* ─── RESPONSIVE LAYOUT & MEDIA QUERIES ───────────────────────────── */
+
+/* Grid and column layouts */
+@media (max-width: 900px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .hero-inner .hero-avatar-area {
+    order: -1;
+  }
+
+  .hero-socials {
+    justify-content: center;
+  }
+
+  .hero-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-content {
+    margin: 0 auto;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+  }
+
+  .about-cards-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Timeline responsive modifications */
+@media (max-width: 768px) {
+  .timeline-container::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 45px;
+    padding-right: 15px;
+    text-align: left !important;
+  }
+
+  .timeline-item-left {
+    left: 0;
+  }
+
+  .timeline-item-right {
+    left: 0;
+  }
+
+  .timeline-dot {
+    left: 13px !important;
+  }
+}
+
+/* Project grid responsive columns */
+@media (min-width: 992px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Certificate grid responsive columns */
+@media (max-width: 992px) {
+  .certs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .certs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form inputs & details responsive */
+@media (max-width: 600px) {
+  .form-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .hero-stats-bar .stat-item:nth-child(2)::after {
+    display: none;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Print modifications */
+@media print {
+  header,
+  footer,
+  #backToTop,
+  .hero-ctas,
+  .showcase-toolbar,
+  .modal-header {
+    display: none !important;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+}

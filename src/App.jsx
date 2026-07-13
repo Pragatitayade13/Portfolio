@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import AppLayout from './components/layout/AppLayout';
-import HomePage from './pages/HomePage';
+import PortfolioPage from './pages/PortfolioPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -14,7 +14,7 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path="/" element={<AppLayout />}>
-            <Route index element={<HomePage />} />
+            <Route index element={<PortfolioPage />} />
             <Route path="projects" element={<ProjectsPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="*" element={<NotFoundPage />} />

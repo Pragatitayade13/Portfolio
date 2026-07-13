@@ -1,0 +1,246 @@
+/* ─── GENERAL LAYOUT & UTILITIES ─────────────────────────────────── */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+section {
+  padding: clamp(60px, 8vw, 100px) 0;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  align-items: center;
+}
+
+/* ─── HEADER & NAVIGATION LAYOUT ─────────────────────────────────── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(9, 13, 22, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.4s ease, border-bottom-color 0.4s ease;
+}
+
+body.theme-light header {
+  background-color: rgba(248, 250, 252, 0.8);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ─── HERO LAYOUT ────────────────────────────────────────────────── */
+.hero-container {
+  position: relative;
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  padding: 40px 0;
+  overflow: hidden;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 620px;
+}
+
+.hero-avatar-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-socials {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 52px;
+}
+
+.hero-stats-bar {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(0, 200, 255, 0.15);
+  margin-top: 28px;
+  padding-top: 28px;
+}
+
+/* ─── ABOUT LAYOUT ───────────────────────────────────────────────── */
+.about-cards-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ─── EXPERIENCE TIMELINE LAYOUT ─────────────────────────────────── */
+.timeline-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background-color: var(--border-color);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-container.single-item::before {
+  left: 20px;
+  transform: none;
+}
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 15px 40px;
+}
+
+.timeline-item-left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item-right {
+  left: 50%;
+  text-align: left;
+}
+
+/* ─── PROJECTS LAYOUT ────────────────────────────────────────────── */
+.showcase-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* ─── EDUCATION LAYOUT ───────────────────────────────────────────── */
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ─── CERTIFICATIONS LAYOUT ──────────────────────────────────────── */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ─── CONTACT FORM LAYOUT ────────────────────────────────────────── */
+.contact-card {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-footer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ─── FOOTER LAYOUT ──────────────────────────────────────────────── */
+footer {
+  background-color: rgba(9, 13, 22, 0.4);
+  border-top: 1px solid var(--border-color);
+  padding: 40px 0;
+}
+
+body.theme-light footer {
+  background-color: rgba(248, 250, 252, 0.4);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}

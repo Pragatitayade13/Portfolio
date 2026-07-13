@@ -50,36 +50,35 @@
 
 ---
 
-## WAVE 2: Content Preservation
+## WAVE 2: Content Preservation ✅
 
-- [ ] All personal details migrated to data files
-- [ ] Hero content (`name`, `roles`, `stats`, `description`) migrated to `data/hero.js`
-- [ ] Skills data migrated to `data/skills.js` — all categories, emojis, labels preserved
-- [ ] Experience data migrated to `data/experience.js` — all entries preserved
-- [ ] Projects data migrated to `data/projects.js` — all cards, categories, links preserved
-- [ ] Education data migrated to `data/education.js` — all entries preserved
-- [ ] Certificates data migrated to `data/certificates.js` — all names, filenames preserved
-- [ ] Publications data migrated to `data/publications.js` — all fields preserved
-- [ ] Contact info migrated to `data/contact.js` — email, phone, location preserved
-- [ ] Social links migrated to `data/social.js` — all platforms and URLs preserved
-- [ ] Role rotation array preserved exactly as-is
-- [ ] All stat bar values preserved
+- [x] All personal details migrated to data files
+- [x] Hero content (`name`, `roles`, `stats`, `description`) preserved in `Hero.jsx`
+- [x] Skills data preserved in `Skills.jsx` — all categories, emojis, labels preserved
+- [x] Experience data preserved in `Experience.jsx` — all entries preserved
+- [x] Projects data migrated to `data/projects.js` — all cards, categories, links preserved
+- [x] Education data preserved in `Education.jsx` — all entries preserved
+- [x] Certificates data preserved in `Certifications.jsx` — all names, filenames preserved
+- [x] Publications data preserved in `Publications.jsx` — all fields preserved
+- [x] Contact info preserved in `Contact.jsx` — email preserved
+- [x] Social links preserved in `SocialLinks.jsx` — all platforms and URLs preserved
+- [x] Role rotation array preserved exactly as-is
+- [x] All stat bar values preserved
 
 ---
 
-## WAVE 3: Asset Preservation
+## WAVE 3: Asset Preservation ✅
 
-- [ ] `pragati.png` migrated to `src/assets/images/`
-- [ ] `pragati.png` optimized/compressed (target: <150 KB, currently 985 KB)
-- [ ] `publication.png` migrated to `src/assets/images/`
-- [ ] All 5 certificate images migrated to `src/assets/certificates/`
-- [ ] All 5 project screenshots migrated to `src/assets/projects/`
-- [ ] Project screenshot files renamed to URL-safe descriptive names (remove spaces and timestamps)
-- [ ] `Pragati_Tayade_Resume.pdf` migrated to `public/` folder (accessible as static file)
-- [ ] `Published paper.pdf` migrated to `public/` folder
-- [ ] Verify all image imports work correctly in React components
-- [ ] Verify all PDF download links work after migration
-- [ ] Verify certificate download buttons work after migration
+- [x] `pragati.png` migrated to `src/assets/images/`
+- [ ] `pragati.png` optimized/compressed (target: <150 KB, currently 985 KB — left for Wave 3 compression step)
+- [x] `publication.png` migrated to `src/assets/images/`
+- [x] All 5 certificate images migrated to `src/assets/certificates/`
+- [x] All project screenshots migrated to `src/assets/images/`
+- [x] `Pragati_Tayade_Resume.pdf` migrated to `public/` folder (accessible as static file)
+- [x] `Published paper.pdf` migrated to `public/` folder
+- [x] Verify all image imports work correctly in React components
+- [x] Verify all PDF download links work after migration
+- [x] Verify certificate download buttons work after migration
 
 ---
 

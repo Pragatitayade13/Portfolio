@@ -1,3 +1,7 @@
+@import './layout.css';
+@import './components.css';
+@import './responsive.css';
+
 /* ─── DESIGN SYSTEM & PALETTE ───────────────────────────────────────── */
 :root {
   /* Theme-independent values */
