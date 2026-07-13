@@ -217,11 +217,11 @@
 
 ---
 
-## WAVE 10: Admin Dashboard
+## WAVE 10: Admin Dashboard (Authentication & Access Control) ✅
 
-- [ ] Admin route protected with Firebase Authentication
-- [ ] Admin can log in securely
-- [ ] Admin can update portfolio content without code changes
+- [x] Admin route protected with Firebase Authentication and adminUsers check
+- [x] Admin can log in securely (AdminLoginPage.jsx)
+- [ ] Admin can update portfolio content without code changes (future waves)
 - [ ] Admin can manage projects
 - [ ] Admin can manage certificates
 - [ ] Admin can manage skills
@@ -229,8 +229,8 @@
 - [ ] Admin can manage education entries
 - [ ] Admin can manage publication details
 - [ ] Admin can update contact information
-- [ ] Admin dashboard is NOT publicly accessible
-- [ ] Admin dashboard is mobile-friendly
+- [x] Admin dashboard is NOT publicly accessible (blocked by route guards)
+- [x] Admin dashboard is mobile-friendly (responsive CSS layout)
 
 ---
 
