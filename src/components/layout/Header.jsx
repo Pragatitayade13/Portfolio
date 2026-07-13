@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useActiveNavHighlight } from '../../hooks/useActiveNavHighlight';
 import ThemeToggle from '../common/ThemeToggle';
 import MobileNavigation from './MobileNavigation';
+import resumePdf from '../../assets/documents/Pragati_Tayade_Resume.pdf';
+import DocumentLink from '../common/DocumentLink';
 import './Header.css';
 
 const Header = () => {
@@ -41,6 +43,7 @@ const Header = () => {
           onClick={toggleMenu} 
           aria-expanded={isOpen} 
           aria-label="Toggle navigation menu"
+          aria-controls="navigationLinks"
         >
           {isOpen ? (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -70,10 +73,17 @@ const Header = () => {
         </nav>
 
         {/* Mobile Navigation overlay drawer */}
-        <MobileNavigation isOpen={isOpen} onClose={closeMenu} />
+        <MobileNavigation isOpen={isOpen} onClose={closeMenu} id="navigationLinks" />
 
         <div className="nav-actions">
           <ThemeToggle />
+          <DocumentLink 
+            className="btn btn-secondary btn-resume-header" 
+            href={resumePdf} 
+            downloadName="Pragati_Tayade_Resume.pdf"
+          >
+            Resume
+          </DocumentLink>
           <a className="btn btn-hire" href="#/#contact" onClick={closeMenu}>Hire Me</a>
         </div>
       </div>

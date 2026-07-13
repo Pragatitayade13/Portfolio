@@ -1,59 +1,55 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
+import SectionHeading from '../common/SectionHeading';
 
 const Skills = () => {
-  const [animateSkills, setAnimateSkills] = useState(false);
-  const skillsRef = useRef(null);
-
-  const skillsData = [
-    { name: "Java & OOPs", level: 90 },
-    { name: "HTML, CSS & JS", level: 85 },
-    { name: "Python & C/C++", level: 50 },
-    { name: "MySQL Database", level: 70 },
-    { name: "CyberSecurity & Tools", level: 50 }
+  const skillCategories = [
+    {
+      title: "Backend & Systems",
+      skills: ["Java", "OOPs", "Spring Boot", "REST APIs", "C/C++", "Python"]
+    },
+    {
+      title: "Frontend Technologies",
+      skills: ["React.js", "JavaScript", "HTML5", "CSS3", "Bootstrap"]
+    },
+    {
+      title: "Database & Security",
+      skills: ["MySQL Database", "SQL Design", "PostgreSQL", "CyberSecurity Basics"]
+    },
+    {
+      title: "Tools & Workflow",
+      skills: ["Git & GitHub", "Docker", "Postman API", "Maven", "VS Code", "Agile / Scrum"]
+    }
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimateSkills(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (skillsRef.current) {
-      observer.observe(skillsRef.current);
-    }
-
-    return () => {
-      if (skillsRef.current) {
-        observer.disconnect();
-      }
-    };
-  }, []);
-
   return (
-    <aside className="card reveal" style={{ transitionDelay: '0.1s' }} ref={skillsRef}>
-      <h3>Technical Skills</h3>
-      <div className="skills-box" id="skillsWrapper">
-        {skillsData.map((skill, idx) => (
-          <div className="skill-item" key={idx}>
-            <div className="skill-meta">
-              <span>{skill.name}</span>
-              <span>{skill.level}%</span>
+    <section id="skills" style={{ backgroundColor: 'var(--bg-secondary)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
+      <div className="container">
+        <SectionHeading 
+          label="Capabilities" 
+          title="Technical Skills" 
+          subtitle="A comprehensive grid of technologies, frameworks, databases, and professional tools I work with."
+        />
+
+        <div className="skills-grid-container">
+          {skillCategories.map((category, idx) => (
+            <div 
+              className="skill-category-card reveal" 
+              style={{ transitionDelay: `${idx * 0.05}s` }}
+              key={idx}
+            >
+              <h3 className="skill-category-title">{category.title}</h3>
+              <div className="skill-badges-wrapper">
+                {category.skills.map((skill, sIdx) => (
+                  <span className="skill-badge" key={sIdx}>
+                    <span style={{ color: 'var(--accent-secondary)' }}>#</span> {skill}
+                  </span>
+                ))}
+              </div>
             </div>
-            <div className="skill-track">
-              <div 
-                className="skill-fill" 
-                style={{ width: animateSkills ? `${skill.level}%` : '0%' }}
-              ></div>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </aside>
+    </section>
   );
 };
 

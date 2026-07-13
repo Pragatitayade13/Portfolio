@@ -16,6 +16,13 @@ const ProjectCard = ({ project, onClick, index }) => {
       className="project-card reveal" 
       style={{ transitionDelay: `${(index % 3) * 0.05}s` }}
       onClick={() => onClick(project)}
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick(project);
+        }
+      }}
     >
       <div className="project-thumbnail">
         <img src={coverImgUrl} alt={`${project.title} Cover`} loading="lazy" />
@@ -29,8 +36,12 @@ const ProjectCard = ({ project, onClick, index }) => {
           </span>
         </div>
       </div>
+      
       <div className="project-body">
-        <h3 className="project-title">{project.title}</h3>
+        <div className="project-header-row">
+          <h3 className="project-title">{project.title}</h3>
+          <span className="project-status-tag">{project.status}</span>
+        </div>
         <p className="project-summary">{project.summary}</p>
         <div className="project-tags">
           {project.tech.map((t, idx) => (

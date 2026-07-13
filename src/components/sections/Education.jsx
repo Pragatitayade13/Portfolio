@@ -30,7 +30,7 @@ const Education = () => {
   ];
 
   return (
-    <section id="education">
+    <section id="education" style={{ backgroundColor: 'var(--bg-secondary)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
       <div className="container">
         <SectionHeading 
           label="Academics" 
@@ -45,7 +45,7 @@ const Education = () => {
               style={{ transitionDelay: edu.delay }}
               key={idx}
             >
-              <div className="education-icon">{edu.icon}</div>
+              <div className="education-icon" aria-hidden="true">{edu.icon}</div>
               <div className="education-date">{edu.date}</div>
               <h3 className="education-degree">{edu.degree}</h3>
               <div className="education-school">{edu.school}</div>

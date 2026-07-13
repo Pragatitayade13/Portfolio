@@ -18,7 +18,6 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const dialogRef = useRef(null);
 
-  // Manage modal open/close effect on body overflow
   useEffect(() => {
     if (selectedProject) {
       dialogRef.current?.showModal();
@@ -46,7 +45,6 @@ const Projects = () => {
     }
   };
 
-  // Filter project cards list
   const filteredProjects = PROJECTS_DATA.filter((p) => {
     const matchesCategory = activeFilter === 'All' || p.category === activeFilter;
     const matchesSearch = 
@@ -65,9 +63,9 @@ const Projects = () => {
     <section id="projects">
       <div className="container">
         <SectionHeading 
-          label="My Projects" 
-          title="Featured Work" 
-          subtitle="Filter or search through my coding projects. Click cards for modal details."
+          label="My Portfolio" 
+          title="Featured Projects" 
+          subtitle="Explore case studies of full-stack systems and developer tools I have designed."
         />
 
         <div className="showcase-toolbar reveal">
@@ -103,7 +101,7 @@ const Projects = () => {
         <div className="projects-grid" aria-live="polite">
           {filteredProjects.length === 0 ? (
             <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '48px', color: 'var(--text-muted)', fontWeight: 500 }}>
-              No projects match your criteria.
+              No projects match your search criteria.
             </div>
           ) : (
             filteredProjects.map((project, idx) => (
@@ -118,7 +116,7 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* DYNAMIC LIGHTBOX MODAL */}
+      {/* DYNAMIC LIGHTBOX MODAL WITH RECRUITER SPECS */}
       <dialog 
         ref={dialogRef} 
         onClick={handleBackdropClick} 
@@ -132,26 +130,62 @@ const Projects = () => {
             </div>
             <div className="modal-scrollable">
               <div className="modal-thumb">
-                <img src={modalCover} alt={`${selectedProject.title} Detail Banner`} />
+                <img src={modalCover} alt={`${selectedProject.title} Cover Photo`} />
               </div>
               <div className="modal-body">
                 <div className="modal-title-row">
                   <h3 className="modal-title" id="modalHeading">{selectedProject.title}</h3>
                   <p className="modal-meta">{selectedProject.category} · {selectedProject.year}</p>
                 </div>
+                
                 <p className="modal-lead">{selectedProject.summary}</p>
-                <p className="modal-desc">{selectedProject.details}</p>
-                <div className="project-tags" style={{ marginBottom: '24px' }}>
+                
+                {/* Case Study Details Grid */}
+                <div style={{ margin: '24px 0', display: 'grid', gap: '16px' }}>
+                  {selectedProject.problem && (
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--accent)', letterSpacing: '0.5px', marginBottom: '4px' }}>
+                        Problem Statement:
+                      </strong>
+                      <p style={{ fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>
+                        {selectedProject.problem}
+                      </p>
+                    </div>
+                  )}
+                  {selectedProject.solution && (
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--accent-secondary)', letterSpacing: '0.5px', marginBottom: '4px' }}>
+                        The Solution:
+                      </strong>
+                      <p style={{ fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>
+                        {selectedProject.solution}
+                      </p>
+                    </div>
+                  )}
+                  {selectedProject.contribution && (
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.5px', marginBottom: '4px' }}>
+                        Key Contribution:
+                      </strong>
+                      <p style={{ fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>
+                        {selectedProject.contribution}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="project-tags" style={{ marginBottom: '28px' }}>
                   {selectedProject.tech.map((t, idx) => (
                     <span className="project-tag" key={idx}>{t}</span>
                   ))}
                 </div>
+
                 <div className="modal-links">
                   <ExternalLink className="btn btn-primary" href={selectedProject.url}>
                     🚀 Live Demo
                   </ExternalLink>
                   <ExternalLink className="btn btn-secondary" href={selectedProject.repo}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle', marginRight: '4px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle', marginRight: '6px' }}>
                       <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                     </svg>
                     Repository

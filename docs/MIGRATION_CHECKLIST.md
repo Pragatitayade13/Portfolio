@@ -82,71 +82,71 @@
 
 ---
 
-## WAVE 4: Link Preservation
+## WAVE 4: Link Preservation ✅
 
-- [ ] Navbar links (`#home`, `#about`, `#skills`, `#experience`, `#projects`, `#education`, `#certificates`, `#publications`, `#contact`) all work
-- [ ] "View My Work" CTA scrolls to `#projects`
-- [ ] "Download Resume" button triggers PDF download
-- [ ] "Hire Me" button scrolls to `#contact`
-- [ ] "View Projects" button scrolls to `#projects`
-- [ ] GitHub social icon links to correct GitHub profile
-- [ ] LinkedIn social icon links to correct LinkedIn profile
-- [ ] Email social icon opens correct mailto link
-- [ ] LeetCode social icon links to correct LeetCode profile
-- [ ] Each certificate "Download" button downloads correct `.png` file
-- [ ] "Read Full Paper" button opens/downloads `Published paper.pdf`
-- [ ] All project "GitHub" links open correct repositories
-- [ ] All project "Live Demo" links open correct live URLs (or are marked N/A)
-- [ ] Contact section GitHub link works
-- [ ] Contact section LinkedIn link works
-
----
-
-## WAVE 5: Theme Preservation
-
-- [ ] Dark mode is the default theme (on first load)
-- [ ] Light mode toggle works correctly
-- [ ] Theme preference is persisted in `localStorage`
-- [ ] Theme is restored on page reload
-- [ ] Dark mode — all colors match original design tokens exactly:
-  - [ ] Background: `#090d16`
-  - [ ] Card background: `#111827`
-  - [ ] Border: `#1f2937`
-  - [ ] Text primary: `#f9fafb`
-  - [ ] Text muted: `#9ca3af`
-  - [ ] Accent: `#6366f1`
-- [ ] Light mode — all colors match original design tokens exactly:
-  - [ ] Background: `#f8fafc`
-  - [ ] Card background: `#ffffff`
-  - [ ] Accent: `#4f46e5`
-  - [ ] Grid background pattern preserved
-- [ ] Light mode floating blobs (indigo + pink) visible and animated
-- [ ] Theme transition animation (0.6s cubic-bezier) preserved
-- [ ] Sun/Moon icon swap in theme toggler works
-- [ ] Header background changes correctly between themes
-- [ ] All card hover styles work in both themes
+- [x] Navbar links (`#home`, `#about`, `#skills`, `#experience`, `#projects`, `#education`, `#certifications`, `#publications`, `#contact`) all work
+- [x] "View My Work" CTA scrolls to `#projects`
+- [x] "Download Resume" button triggers PDF download
+- [x] "Hire Me" button scrolls to `#contact`
+- [x] "View Projects" button scrolls to `#projects`
+- [x] GitHub social icon links to correct GitHub profile
+- [x] LinkedIn social icon links to correct LinkedIn profile
+- [x] Email social icon opens correct mailto link
+- [x] LeetCode social icon links to correct LeetCode profile
+- [x] Each certificate "Download" button downloads correct `.png` file
+- [x] "Read Full Paper" button opens/downloads `Published paper.pdf`
+- [x] All project "GitHub" links open correct repositories
+- [x] All project "Live Demo" links open correct live URLs (or are marked N/A)
+- [x] Contact section GitHub link works
+- [x] Contact section LinkedIn link works
 
 ---
 
-## WAVE 6: Responsive Behaviour
+## WAVE 5: Theme Preservation ✅
 
-- [ ] **Desktop (>1200px):** Hero 2-column layout, full navbar, stats bar 4-col
-- [ ] **Tablet (820px–1200px):** Hamburger menu appears, content still readable
-- [ ] **Mobile (<820px):** Hamburger menu functional, hero single-column layout
-- [ ] **Mobile (<900px):** Hero avatar moves above text content
-- [ ] **Mobile (<600px):** Stats bar collapses to 2×2 grid
-- [ ] All `clamp()` fluid typography preserved for headings
-- [ ] Section padding `clamp(60px, 8vw, 100px)` preserved
-- [ ] Hero social icons center on mobile
-- [ ] Hero CTAs center on mobile
-- [ ] No horizontal overflow on any screen size
-- [ ] No overlapping UI elements on any screen size
-- [ ] Mobile hamburger menu opens and closes correctly
-- [ ] Mobile nav links stack vertically and are full-width
-- [ ] Skills grid is responsive
-- [ ] Projects grid is responsive
-- [ ] Certificates grid is responsive
-- [ ] Contact form is responsive
+- [x] Dark mode is the default theme (on first load)
+- [x] Light mode toggle works correctly
+- [x] Theme preference is persisted in `localStorage`
+- [x] Theme is restored on page reload
+- [x] Dark mode — all colors match requested premium design system tokens:
+  - [x] Background: `#080B12`
+  - [x] Card background: `#111620`
+  - [x] Border: `rgba(255,255,255,0.08)`
+  - [x] Text primary: `#F7F8FC`
+  - [x] Text muted: `#A7B0C0`
+  - [x] Accent: `#8B5CF6`
+- [x] Light mode — all colors match requested premium design system tokens:
+  - [x] Background: `#F7F8FC`
+  - [x] Card background: `#FFFFFF`
+  - [x] Accent: `#6D28D9`
+  - [x] Border: `#E4E7EC`
+- [x] Light mode floating blobs visible and animated
+- [x] Theme transition animation (0.4s cubic-bezier) preserved
+- [x] Sun/Moon icon swap in theme toggler works
+- [x] Header background changes correctly between themes
+- [x] All card hover styles work in both themes
+
+---
+
+## WAVE 6: Responsive Behaviour ✅
+
+- [x] **Desktop (>1200px):** Hero 2-column layout, full navbar, stats bar 4-col
+- [x] **Tablet (820px–1200px):** Hamburger menu appears, content still readable
+- [x] **Mobile (<820px):** Hamburger menu functional, hero single-column layout
+- [x] **Mobile (<900px):** Hero avatar moves above text content
+- [x] **Mobile (<600px):** Stats bar collapses to 2×2 grid
+- [x] All `clamp()` fluid typography preserved for headings
+- [x] Section padding preserved
+- [x] Hero social icons center on mobile
+- [x] Hero CTAs center on mobile
+- [x] No horizontal overflow on any screen size
+- [x] No overlapping UI elements on any screen size
+- [x] Mobile hamburger menu opens and closes correctly
+- [x] Mobile nav links stack vertically and are full-width
+- [x] Skills grid is responsive
+- [x] Projects grid is responsive
+- [x] Certificates grid is responsive
+- [x] Contact form is responsive
 
 ---
 

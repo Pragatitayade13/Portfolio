@@ -17,7 +17,7 @@ const Hero = () => {
   const [projectCount, setProjectCount] = useState(0);
   const statsSectionRef = useRef(null);
 
-  // Role cycler
+  // Role rotator cycle
   useEffect(() => {
     const interval = setInterval(() => {
       setAnimateClass('slide-out');
@@ -42,7 +42,7 @@ const Hero = () => {
         if (entry.isIntersecting) {
           let start = 0;
           const end = 3;
-          const duration = 1000; // 1s
+          const duration = 1000;
           const startTime = performance.now();
 
           const animate = (timestamp) => {
@@ -79,22 +79,18 @@ const Hero = () => {
     <section className="hero-container" id="home">
       <div className="container" style={{ width: '100%' }}>
         <div className="hero-inner">
-          {/* LEFT: Profile Avatar */}
-          <div className="hero-avatar-area reveal">
-            <div className="avatar-glow-ring">
-              <div className="avatar-frame">
-                <img src={avatarImg} alt="Pragati Tayade Profile Portrait" />
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT: Text Content */}
+          
+          {/* LEFT: Text Content */}
           <div className="hero-content">
-            <p className="hero-greeting reveal">Hello, I'm</p>
-            <h1 className="hero-name reveal" style={{ transitionDelay: '0.08s' }}>
+            <div className="hero-badge reveal">
+              <span className="hero-badge-dot"></span> Available for Work
+            </div>
+            
+            <p className="hero-greeting reveal" style={{ transitionDelay: '0.05s' }}>Hello, I'm</p>
+            <h1 className="hero-name reveal" style={{ transitionDelay: '0.1s' }}>
               Pragati Tayade
             </h1>
-            <p className="hero-role reveal" style={{ transitionDelay: '0.14s' }}>
+            <p className="hero-role reveal" style={{ transitionDelay: '0.15s' }}>
               <span className={`role-text-animate ${animateClass}`}>
                 {rolesList[roleIndex]}
               </span>
@@ -106,28 +102,49 @@ const Hero = () => {
               design.
             </p>
 
-            {/* Social Icons */}
+            {/* Social Icons row */}
             <SocialLinks />
 
             {/* CTA Buttons */}
             <div className="hero-ctas reveal" style={{ transitionDelay: '0.28s' }}>
-              <a className="btn btn-hire" href="#/#contact">Hire Me</a>
-              <a className="btn btn-secondary" href="#/#about">Contact Me</a>
+              <a className="btn btn-primary btn-hire" href="#/#projects">View Projects</a>
               <DocumentLink 
                 className="btn btn-secondary" 
                 href={resumePdf} 
                 downloadName="Pragati_Tayade_Resume.pdf"
               >
-                ⬇ Resume
+                ⬇ Download Resume
               </DocumentLink>
+              <a className="btn btn-secondary" href="#/#contact">Contact Me</a>
+            </div>
+
+            {/* Key Tech Highlights using JetBrains Mono */}
+            <div className="hero-tech-highlights reveal" style={{ transitionDelay: '0.32s' }}>
+              <span className="hero-tech-label">Core stack:</span>
+              <div className="hero-tech-tags">
+                <span className="hero-tech-tag">Java</span>
+                <span className="hero-tech-tag">Spring Boot</span>
+                <span className="hero-tech-tag">React.js</span>
+                <span className="hero-tech-tag">SQL</span>
+              </div>
             </div>
           </div>
+
+          {/* RIGHT: Profile Avatar */}
+          <div className="hero-avatar-area reveal">
+            <div className="avatar-glow-ring">
+              <div className="avatar-frame">
+                <img src={avatarImg} alt="Pragati Tayade Profile Portrait" />
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* Stats bar spans full width below */}
         <div 
           className="hero-stats-bar reveal" 
-          style={{ transitionDelay: '0.34s' }}
+          style={{ transitionDelay: '0.36s' }}
           ref={statsSectionRef}
         >
           <div className="stat-item">
