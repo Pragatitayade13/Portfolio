@@ -25,17 +25,19 @@
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Dark theme colors (default) */
-  --bg-primary: #080B12;
-  --bg-secondary: #0D111B;
-  --bg-card: #111620;
-  --bg-elevated: #171D29;
-  --text-primary: #F7F8FC;
-  --text-muted: #A7B0C0;
-  --accent: #8B5CF6;
-  --accent-hover: #7C3AED;
-  --accent-rgb: 139, 92, 246;
-  --accent-muted: rgba(139, 92, 246, 0.08);
-  --accent-secondary: #14B8A6;
+  --bg-primary: #070A12;
+  --bg-secondary: #0B101A;
+  --bg-card: #111827;
+  --bg-elevated: #151C2A;
+  --text-primary: #F8FAFC;
+  --text-muted: #AAB4C5;
+  --text-dim: #7C8799;
+  --accent: #9B7CFF;
+  --accent-hover: #B29BFF;
+  --accent-rgb: 155, 124, 255;
+  --accent-muted: rgba(155, 124, 255, 0.1);
+  --accent-secondary: #2DD4BF;
+  --accent-highlight: #FBBF24;
   --border-color: rgba(255, 255, 255, 0.08);
 
   --success: #10b981;
@@ -43,29 +45,31 @@
 
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.35), 0 10px 10px -5px rgba(0, 0, 0, 0.15);
 }
 
 /* Light theme overrides */
 body.theme-light {
   --bg-primary: #F7F8FC;
-  --bg-secondary: #F1F3F8;
+  --bg-secondary: #EEF1F7;
   --bg-card: #FFFFFF;
-  --bg-elevated: #FFFFFF;
+  --bg-elevated: #F4F6FA;
   --text-primary: #111827;
   --text-muted: #667085;
+  --text-dim: #98A2B3;
   --accent: #6D28D9;
   --accent-hover: #5B21B6;
   --accent-rgb: 109, 40, 217;
-  --accent-muted: rgba(109, 40, 217, 0.06);
+  --accent-muted: rgba(109, 40, 217, 0.08);
   --accent-secondary: #0F766E;
+  --accent-highlight: #F59E0B;
   --border-color: #E4E7EC;
 
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 10px 15px -3px rgba(109, 40, 217, 0.08), 0 4px 6px -2px rgba(109, 40, 217, 0.04);
-  --shadow-xl: 0 20px 25px -5px rgba(109, 40, 217, 0.1), 0 10px 10px -5px rgba(109, 40, 217, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(17, 24, 39, 0.08), 0 4px 6px -2px rgba(17, 24, 39, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(17, 24, 39, 0.08), 0 10px 10px -5px rgba(17, 24, 39, 0.04);
 }
 
 /* ─── RESET & BASE STYLES ────────────────────────────────────────── */

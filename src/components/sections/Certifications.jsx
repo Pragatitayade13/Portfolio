@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import SectionHeading from '../common/SectionHeading';
-import ExternalLink from '../common/ExternalLink';
+import SpotlightCard from '../common/SpotlightCard';
+import TiltCard from '../common/TiltCard';
+import Modal from '../common/Modal';
+import { Eye, ExternalLink } from 'lucide-react';
 
 // Asset imports
 import vaultOfCodesCert from '../../assets/certificates/vaultofcodes_python_certificate.png';
@@ -10,51 +14,43 @@ import gradGuruCert from '../../assets/certificates/grad_guru_certificate.png';
 import ciscoCyberCert from '../../assets/certificates/cyber.png';
 
 const Certifications = () => {
+  const [zoomedCert, setZoomedCert] = useState(null);
+
   const certificationsData = [
     {
       title: "Python Programming Internship",
       issuer: "VaultofCodes.in · Google Partner",
       date: "July – August 2025",
       image: vaultOfCodesCert,
-      link: vaultOfCodesCert,
-      borderColor: "#8B5CF6",
-      ariaLabel: "View VaultofCodes Python certificate"
+      borderColor: "#9B7CFF"
     },
     {
       title: "Web Development Internship",
       issuer: "ApexPlanet Software Pvt. Ltd.",
       date: "Jul 2025 – Aug 2025 | ID: APSPL2510660",
       image: apexPlanetCert,
-      link: apexPlanetCert,
-      borderColor: "#14B8A6",
-      ariaLabel: "View ApexPlanet Web Dev certificate"
+      borderColor: "#2DD4BF"
     },
     {
       title: "Training on SQL, Core & Advanced Java",
       issuer: "SEED Infotech Ltd. · COET, Akola",
       date: "Aug – Oct 2025 | COET/Java/2025",
       image: seedJavaCert,
-      link: seedJavaCert,
-      borderColor: "#8B5CF6",
-      ariaLabel: "View SEED Java SQL certificate"
+      borderColor: "#9B7CFF"
     },
     {
       title: "Webinar – Career Guidance Session",
       issuer: "Grad Guru Innovation · ISO Certified",
       date: "31 December 2025",
       image: gradGuruCert,
-      link: gradGuruCert,
-      borderColor: "#F59E0B",
-      ariaLabel: "View Grad Guru webinar certificate"
+      borderColor: "#FBBF24"
     },
     {
       title: "Introduction to CyberSecurity",
       issuer: "CISCO Networking Academy",
       date: "Issued: 2025",
       image: ciscoCyberCert,
-      link: ciscoCyberCert,
-      borderColor: "#10B981",
-      ariaLabel: "View CISCO Cybersecurity certificate"
+      borderColor: "#10B981"
     }
   ];
 
@@ -67,44 +63,121 @@ const Certifications = () => {
           subtitle="Specialized course completions, webinar sessions, and professional internships."
         />
 
-        <div className="certs-grid">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '24px',
+          marginTop: '40px'
+        }} className="certs-grid">
+          
           {certificationsData.map((cert, idx) => (
-            <div 
-              className="cert-card reveal" 
-              style={{ borderLeftColor: cert.borderColor }}
+            <motion.div 
               key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: idx * 0.05 }}
+              onClick={() => setZoomedCert(cert)}
+              style={{ cursor: 'pointer' }}
             >
-              <ExternalLink 
-                href={cert.link} 
-                className="cert-thumbnail"
-                aria-label={cert.ariaLabel}
-              >
-                <img src={cert.image} alt={cert.title} loading="lazy" />
-                <div className="cert-thumbnail-overlay">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                    <circle cx="12" cy="12" r="3" />
-                  </svg>
-                  View Document
-                </div>
-              </ExternalLink>
-              <div>
-                <h3 className="cert-title">{cert.title}</h3>
-                <div className="cert-issuer">{cert.issuer}</div>
-                <div className="cert-date">{cert.date}</div>
-              </div>
-              <ExternalLink href={cert.link} className="cert-link">
-                View Certificate 
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-              </ExternalLink>
-            </div>
+              <TiltCard maxRotation={4} style={{ height: '100%' }}>
+                <SpotlightCard style={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  border: '1px solid var(--border-color)',
+                  borderTop: `4px solid ${cert.borderColor}`,
+                  borderRadius: 'var(--radius-md)',
+                  overflow: 'hidden'
+                }}>
+                  
+                  {/* Thumbnail */}
+                  <div style={{ position: 'relative', height: '160px', overflow: 'hidden' }}>
+                    <img 
+                      src={cert.image} 
+                      alt={cert.title} 
+                      loading="lazy" 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                    <div style={{
+                      position: 'absolute',
+                      inset: 0,
+                      backgroundColor: 'rgba(7, 10, 18, 0.4)',
+                      opacity: 0,
+                      display: 'grid',
+                      placeItems: 'center',
+                      color: '#FFF',
+                      transition: 'opacity 0.25s ease'
+                    }} className="cert-hover-overlay">
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', fontWeight: 600 }}>
+                        <Eye size={16} /> Preview Document
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Body details */}
+                  <div style={{ padding: '20px', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <div>
+                      <h3 style={{ fontSize: '0.95rem', fontWeight: 800, letterSpacing: '-0.3px', margin: 0 }}>
+                        {cert.title}
+                      </h3>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                        {cert.issuer}
+                      </div>
+                    </div>
+                    <div style={{ fontSize: '0.725rem', fontFamily: 'var(--font-code)', color: 'var(--accent)', marginTop: '12px' }}>
+                      {cert.date}
+                    </div>
+                  </div>
+
+                </SpotlightCard>
+              </TiltCard>
+            </motion.div>
           ))}
+
         </div>
       </div>
+
+      {/* Styles for hover display */}
+      <style>{`
+        .certs-grid > div:hover .cert-hover-overlay {
+          opacity: 1 !important;
+        }
+      `}</style>
+
+      {/* Document Zoom Modal */}
+      <Modal 
+        isOpen={zoomedCert !== null} 
+        onClose={() => setZoomedCert(null)}
+        title={zoomedCert?.title || "Certificate Document"}
+      >
+        {zoomedCert && (
+          <div style={{ display: 'grid', gap: '20px', textAlign: 'center' }}>
+            <div style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-color)' }}>
+              <img 
+                src={zoomedCert.image} 
+                alt={zoomedCert.title} 
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+              <div style={{ textAlign: 'left' }}>
+                <h4 style={{ fontWeight: 800, fontSize: '1rem' }}>{zoomedCert.title}</h4>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{zoomedCert.issuer}</p>
+              </div>
+              <a 
+                href={zoomedCert.image} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn btn-primary"
+                style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px 20px', fontSize: '0.8rem' }}
+              >
+                Open Full Document <ExternalLink size={14} />
+              </a>
+            </div>
+          </div>
+        )}
+      </Modal>
     </section>
   );
 };

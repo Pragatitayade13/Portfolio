@@ -1,5 +1,6 @@
 import React from 'react';
 import SectionHeading from '../common/SectionHeading';
+import TimelineItem from '../common/TimelineItem';
 
 const Experience = () => {
   const experiences = [
@@ -21,23 +22,25 @@ const Experience = () => {
           subtitle="A timeline of my professional developer internships and software roles."
         />
 
-        <div className="timeline-container">
+        <div style={{
+          position: 'relative',
+          maxWidth: '800px',
+          margin: '40px auto 0',
+          borderLeft: '2px solid var(--border-color)',
+          paddingTop: '8px'
+        }} className="timeline-container">
+          
           {experiences.map((exp, idx) => (
-            <div className="timeline-item reveal" key={idx}>
-              <span className="timeline-dot" aria-hidden="true"></span>
-              <div className="timeline-card">
-                <div className="timeline-date">{exp.date}</div>
-                <h3 className="timeline-title">{exp.title}</h3>
-                <div className="timeline-company">{exp.company}</div>
-                <p className="timeline-text">{exp.desc}</p>
-                <div className="timeline-techs">
-                  {exp.techs.map((tech, tIdx) => (
-                    <span className="timeline-tech-tag" key={tIdx}>{tech}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <TimelineItem 
+              key={idx}
+              role={exp.title}
+              company={exp.company}
+              date={exp.date}
+              desc={exp.desc}
+              techs={exp.techs}
+            />
           ))}
+
         </div>
       </div>
     </section>

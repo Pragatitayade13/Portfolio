@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SectionHeading from '../common/SectionHeading';
+import SkillGroup from '../common/SkillGroup';
 
 const Skills = () => {
+  const [activeTab, setActiveTab] = useState('All');
+
   const skillCategories = [
     {
       title: "Backend & Systems",
@@ -21,6 +24,10 @@ const Skills = () => {
     }
   ];
 
+  const filteredCategories = activeTab === 'All' 
+    ? skillCategories 
+    : skillCategories.filter(cat => cat.title.toLowerCase().includes(activeTab.toLowerCase()));
+
   return (
     <section id="skills" style={{ backgroundColor: 'var(--bg-secondary)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
       <div className="container">
@@ -30,22 +37,41 @@ const Skills = () => {
           subtitle="A comprehensive grid of technologies, frameworks, databases, and professional tools I work with."
         />
 
-        <div className="skills-grid-container">
-          {skillCategories.map((category, idx) => (
-            <div 
-              className="skill-category-card reveal" 
-              style={{ transitionDelay: `${idx * 0.05}s` }}
-              key={idx}
+        {/* Tab Selection Filter */}
+        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', margin: '32px 0 40px', flexWrap: 'wrap' }}>
+          {['All', 'Backend', 'Frontend', 'Database', 'Tools'].map((tab) => (
+            <button 
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              style={{
+                padding: '8px 18px',
+                borderRadius: '30px',
+                border: '1px solid var(--border-color)',
+                backgroundColor: activeTab === tab ? 'var(--accent)' : 'var(--bg-card)',
+                color: activeTab === tab ? '#FFF' : 'var(--text-muted)',
+                fontSize: '0.825rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'var(--transition)'
+              }}
             >
-              <h3 className="skill-category-title">{category.title}</h3>
-              <div className="skill-badges-wrapper">
-                {category.skills.map((skill, sIdx) => (
-                  <span className="skill-badge" key={sIdx}>
-                    <span style={{ color: 'var(--accent-secondary)' }}>#</span> {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+              {tab === 'All' ? 'Show All' : tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Skill Bento Cards Grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '24px'
+        }} className="skills-grid-container">
+          {filteredCategories.map((category, idx) => (
+            <SkillGroup 
+              key={idx}
+              categoryName={category.title}
+              skillsList={category.skills}
+            />
           ))}
         </div>
       </div>

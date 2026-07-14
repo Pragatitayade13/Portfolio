@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeading from '../common/SectionHeading';
 import ProjectCard from './ProjectCard';
+import Modal from '../common/Modal';
 import { PROJECTS_DATA, FILTERS_DATA } from '../../data/projects';
-import ExternalLink from '../common/ExternalLink';
+import { Globe, Github, Info } from 'lucide-react';
 
 const PROJECT_IMAGE_MAPPING = {
   portfolio: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80",
@@ -16,34 +18,6 @@ const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProject, setSelectedProject] = useState(null);
-  const dialogRef = useRef(null);
-
-  useEffect(() => {
-    if (selectedProject) {
-      dialogRef.current?.showModal();
-      document.body.style.overflow = 'hidden';
-    } else {
-      dialogRef.current?.close();
-      document.body.style.overflow = '';
-    }
-  }, [selectedProject]);
-
-  const handleCloseModal = () => {
-    setSelectedProject(null);
-  };
-
-  const handleBackdropClick = (e) => {
-    if (dialogRef.current) {
-      const bounds = dialogRef.current.getBoundingClientRect();
-      const clickedInside = (
-        bounds.top <= e.clientY && e.clientY <= bounds.top + bounds.height &&
-        bounds.left <= e.clientX && e.clientX <= bounds.left + bounds.width
-      );
-      if (!clickedInside) {
-        handleCloseModal();
-      }
-    }
-  };
 
   const filteredProjects = PROJECTS_DATA.filter((p) => {
     const matchesCategory = activeFilter === 'All' || p.category === activeFilter;
@@ -68,8 +42,9 @@ const Projects = () => {
           subtitle="Explore case studies of full-stack systems and developer tools I have designed."
         />
 
-        <div className="showcase-toolbar reveal">
-          <div className="filter-chips" role="tablist" aria-label="Project category filters">
+        {/* Toolbar filters + searches */}
+        <div className="showcase-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '32px 0 40px', flexWrap: 'wrap', gap: '20px' }}>
+          <div className="filter-chips" role="tablist" aria-label="Project category filters" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {FILTERS_DATA.map((category) => (
               <button 
                 key={category}
@@ -77,125 +52,165 @@ const Projects = () => {
                 role="tab"
                 aria-selected={category === activeFilter ? 'true' : 'false'}
                 onClick={() => setActiveFilter(category)}
+                style={{
+                  padding: '8px 18px',
+                  borderRadius: '30px',
+                  border: '1px solid var(--border-color)',
+                  backgroundColor: category === activeFilter ? 'var(--accent)' : 'transparent',
+                  color: category === activeFilter ? '#FFF' : 'var(--text-muted)',
+                  fontSize: '0.825rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'var(--transition)'
+                }}
               >
                 {category}
               </button>
             ))}
           </div>
-          <div className="search-box-wrapper">
+
+          <div style={{ position: 'relative', width: '100%', maxWidth: '300px' }}>
             <input 
-              className="search-box-input" 
+              className="search-input-box"
               type="search" 
               placeholder="Search projects..."
               aria-label="Search projects input" 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '10px 16px 10px 40px',
+                borderRadius: '30px',
+                border: '1px solid var(--border-color)',
+                backgroundColor: 'var(--bg-card)',
+                color: 'var(--text-primary)',
+                fontSize: '0.85rem'
+              }}
             />
-            <svg className="search-box-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
+            <span style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }}>🔍</span>
           </div>
         </div>
 
-        <div className="projects-grid" aria-live="polite">
-          {filteredProjects.length === 0 ? (
-            <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '48px', color: 'var(--text-muted)', fontWeight: 500 }}>
-              No projects match your search criteria.
-            </div>
-          ) : (
-            filteredProjects.map((project, idx) => (
-              <ProjectCard 
-                key={project.id} 
-                project={project} 
-                index={idx}
-                onClick={setSelectedProject}
-              />
-            ))
-          )}
-        </div>
+        {/* Grid display with Anim Presence */}
+        <motion.div 
+          layout
+          className="projects-grid" 
+          aria-live="polite"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '32px'
+          }}
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.length === 0 ? (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                style={{ gridColumn: '1/-1', textAlign: 'center', padding: '48px', color: 'var(--text-muted)', fontWeight: 500 }}
+              >
+                No projects match your search criteria.
+              </motion.div>
+            ) : (
+              filteredProjects.map((project, idx) => (
+                <ProjectCard 
+                  key={project.id} 
+                  project={project} 
+                  index={idx}
+                  onClick={setSelectedProject}
+                />
+              ))
+            )}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
-      {/* DYNAMIC LIGHTBOX MODAL WITH RECRUITER SPECS */}
-      <dialog 
-        ref={dialogRef} 
-        onClick={handleBackdropClick} 
-        onClose={handleCloseModal}
-        aria-labelledby="modalHeading"
+      {/* Case Study Details Modal */}
+      <Modal 
+        isOpen={selectedProject !== null} 
+        onClose={() => setSelectedProject(null)}
+        title={selectedProject?.title || "Project Details"}
       >
         {selectedProject && (
-          <>
-            <div className="modal-header">
-              <button className="modal-close-btn" onClick={handleCloseModal} aria-label="Close dialog">✕</button>
-            </div>
-            <div className="modal-scrollable">
-              <div className="modal-thumb">
-                <img src={modalCover} alt={`${selectedProject.title} Cover Photo`} />
-              </div>
-              <div className="modal-body">
-                <div className="modal-title-row">
-                  <h3 className="modal-title" id="modalHeading">{selectedProject.title}</h3>
-                  <p className="modal-meta">{selectedProject.category} · {selectedProject.year}</p>
-                </div>
-                
-                <p className="modal-lead">{selectedProject.summary}</p>
-                
-                {/* Case Study Details Grid */}
-                <div style={{ margin: '24px 0', display: 'grid', gap: '16px' }}>
-                  {selectedProject.problem && (
-                    <div>
-                      <strong style={{ display: 'block', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--accent)', letterSpacing: '0.5px', marginBottom: '4px' }}>
-                        Problem Statement:
-                      </strong>
-                      <p style={{ fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>
-                        {selectedProject.problem}
-                      </p>
-                    </div>
-                  )}
-                  {selectedProject.solution && (
-                    <div>
-                      <strong style={{ display: 'block', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--accent-secondary)', letterSpacing: '0.5px', marginBottom: '4px' }}>
-                        The Solution:
-                      </strong>
-                      <p style={{ fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>
-                        {selectedProject.solution}
-                      </p>
-                    </div>
-                  )}
-                  {selectedProject.contribution && (
-                    <div>
-                      <strong style={{ display: 'block', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.5px', marginBottom: '4px' }}>
-                        Key Contribution:
-                      </strong>
-                      <p style={{ fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>
-                        {selectedProject.contribution}
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                <div className="project-tags" style={{ marginBottom: '28px' }}>
-                  {selectedProject.tech.map((t, idx) => (
-                    <span className="project-tag" key={idx}>{t}</span>
-                  ))}
-                </div>
-
-                <div className="modal-links">
-                  <ExternalLink className="btn btn-primary" href={selectedProject.url}>
-                    🚀 Live Demo
-                  </ExternalLink>
-                  <ExternalLink className="btn btn-secondary" href={selectedProject.repo}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle', marginRight: '6px' }}>
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                    Repository
-                  </ExternalLink>
-                </div>
+          <div style={{ display: 'grid', gap: '24px' }}>
+            <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', height: '240px', position: 'relative' }}>
+              <img 
+                src={modalCover} 
+                alt={`${selectedProject.title} Cover`} 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to top, rgba(7, 10, 18, 0.8) 0%, transparent 60%)'
+              }} />
+              <div style={{ position: 'absolute', bottom: '16px', left: '20px', color: '#FFF' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', backgroundColor: 'var(--accent)', padding: '4px 10px', borderRadius: '4px' }}>
+                  {selectedProject.category}
+                </span>
+                <span style={{ fontSize: '0.85rem', fontWeight: 600, marginLeft: '12px' }}>
+                  {selectedProject.year}
+                </span>
               </div>
             </div>
-          </>
+
+            <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.6 }}>
+              {selectedProject.summary}
+            </p>
+
+            <div style={{ display: 'grid', gap: '20px', borderTop: '1px solid var(--border-color)', paddingTop: '20px' }}>
+              {selectedProject.problem && (
+                <div>
+                  <h4 style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--accent)', letterSpacing: '0.5px', marginBottom: '6px' }}>
+                    Business Problem
+                  </h4>
+                  <p style={{ fontSize: '0.875rem', color: 'var(--text-primary)', lineHeight: 1.6 }}>
+                    {selectedProject.problem}
+                  </p>
+                </div>
+              )}
+              {selectedProject.solution && (
+                <div>
+                  <h4 style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--accent-secondary)', letterSpacing: '0.5px', marginBottom: '6px' }}>
+                    Solution Summary
+                  </h4>
+                  <p style={{ fontSize: '0.875rem', color: 'var(--text-primary)', lineHeight: 1.6 }}>
+                    {selectedProject.solution}
+                  </p>
+                </div>
+              )}
+              {selectedProject.contribution && (
+                <div>
+                  <h4 style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.5px', marginBottom: '6px' }}>
+                    My Contribution
+                  </h4>
+                  <p style={{ fontSize: '0.875rem', color: 'var(--text-primary)', lineHeight: 1.6 }}>
+                    {selectedProject.contribution}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {selectedProject.tech.map((t, idx) => (
+                <span key={idx} style={{ fontFamily: 'var(--font-code)', fontSize: '0.725rem', fontWeight: 700, backgroundColor: 'var(--bg-secondary)', padding: '4px 10px', borderRadius: '4px', color: 'var(--text-muted)' }}>
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            <div style={{ display: 'flex', gap: '12px', borderTop: '1px solid var(--border-color)', paddingTop: '20px' }}>
+              <a href={selectedProject.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px 20px', fontSize: '0.8rem' }}>
+                <Globe size={14} /> Live Demo
+              </a>
+              <a href={selectedProject.repo} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px 20px', fontSize: '0.8rem' }}>
+                <Github size={14} /> Repository
+              </a>
+            </div>
+          </div>
         )}
-      </dialog>
+      </Modal>
     </section>
   );
 };

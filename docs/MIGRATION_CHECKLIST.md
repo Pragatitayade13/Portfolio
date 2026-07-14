@@ -245,22 +245,22 @@
 
 ## WAVE 12: Testing
 
-- [ ] All navigation links work on desktop
-- [ ] All navigation links work on mobile
-- [ ] Theme toggle works and persists across reload
-- [ ] All animations play correctly
-- [ ] Role text rotator cycles through all roles
-- [ ] Project filter shows/hides correct cards
-- [ ] Certificate modal opens and closes correctly
-- [ ] Certificate download buttons work
-- [ ] Resume download works
-- [ ] Published paper download/open works
-- [ ] Contact form submits successfully
-- [ ] Contact form shows validation errors for empty fields
-- [ ] Form confirmation/thank-you is shown after submission
-- [ ] All external links open in new tab (`target="_blank"` with `rel="noopener noreferrer"`)
-- [ ] No broken images
-- [ ] No broken PDFs
+- [x] All navigation links work on desktop (including achievements, skills, and process)
+- [x] All navigation links work on mobile (using Framer Motion slide-out drawer)
+- [x] Theme toggle works and persists across reload (saves selected state to localStorage)
+- [x] All animations play correctly (using Framer Motion, supports prefers-reduced-motion)
+- [x] Role text rotator cycles through all roles
+- [x] Project filter shows/hides correct cards (animating via layout transitions)
+- [x] Certificate modal opens and closes correctly (handles focus traps and escape key)
+- [x] Certificate download buttons work
+- [x] Resume download works
+- [x] Published paper download/open works
+- [x] Contact form submits successfully (with Toast feedback banners)
+- [x] Contact form shows validation errors for empty fields
+- [x] Form confirmation/thank-you is shown after submission
+- [x] All external links open in new tab (`target="_blank"` with `rel="noopener noreferrer"`)
+- [x] No broken images
+- [x] No broken PDFs
 - [ ] Lighthouse score — Performance ≥ 90
 - [ ] Lighthouse score — Accessibility ≥ 90
 - [ ] Lighthouse score — Best Practices ≥ 90
